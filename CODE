@@ -27,11 +27,9 @@ structural_data = pd.DataFrame({
 integrated_data = pd.concat([genomic_data, proteomic_data.iloc[:, 1:], structural_data.iloc[:, 1:]], axis=1)
 
 # Predicting Off-Target Effects
-integrated_data['Off_Target_Score'] = (
-    integrated_data['Mutation_Rate'] +
-    (1 - integrated_data['Binding_Affinity']) +
-    (1 - integrated_data['Stability'])
-) / 3
+integrated_data['Off_Target_Score'] = (integrated_data['Mutation_Rate'] +
+                                       (1 - integrated_data['Binding_Affinity']) +
+                                       (1 - integrated_data['Stability'])) / 3
 
 # Predicting Drug Resistance Mechanisms
 integrated_data['Resistance_Score'] = integrated_data['Expression_Level'] * integrated_data['Mutation_Rate']
@@ -41,6 +39,7 @@ threshold = 0.05
 biomarkers = integrated_data[integrated_data['Mutation_Rate'] > threshold]
 
 # Visualization
+
 # 1. Genomic Expression Levels
 plt.figure(figsize=(10, 6))
 sns.barplot(x='Gene', y='Expression_Level', data=genomic_data, palette='viridis')
@@ -51,14 +50,16 @@ plt.ylabel('Expression Level')
 plt.tight_layout()
 plt.show()
 
+
 # 2. Binding Affinity and Stability
 plt.figure(figsize=(10, 6))
-sns.scatterplot(x='Binding_Affinity', y='Stability', data=proteomic_data.merge(structural_data, left_index=True, right_index=True))
+sns.scatterplot(x='Binding_Affinity', y='Stability', data=proteomic_data.merage(structural_data, left_index=True, right_index=True))
 plt.title('Binding Affinity vs. Structural Stability')
 plt.xlabel('Binding Affinity')
 plt.ylabel('Stability')
 plt.tight_layout()
 plt.show()
+
 
 # 3. Off-Target Scores
 plt.figure(figsize=(10, 6))
@@ -78,6 +79,7 @@ plt.xlabel('Gene')
 plt.ylabel('Mutation Rate')
 plt.tight_layout()
 plt.show()
+
 
 # Summary Report
 print("=== Summary Report ===")
