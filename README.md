@@ -1,3 +1,11 @@
+Programmer: jathin yarra,Divya reddy konda
+
+Language: Python
+
+script: 3.10 64 bits
+
+Date Submitted: December 28, 2024.
+
 Genomic, Proteomic, and Structural Data Analysis
 This project focuses on integrating and analyzing simulated genomic, proteomic, and structural data to predict off-target effects, drug resistance mechanisms, and 
 identify potential biomarkers.
